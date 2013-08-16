@@ -1,6 +1,12 @@
 (function(){
 	this.keys = [];
+	this.canvas = document.getElementById('canvas');
 	this.box = document.getElementById('box');
+	this.position = {
+		top:  100,
+		left: 100
+	};
+	this.step = 3;
 	var mainLoop;
 
 	this.keyDownHandler = function(e) {
@@ -15,13 +21,30 @@
 	};
 
 	this.keyboardHandler = function() {
-		if (this.keys[27]) {
-			mainLoop = null;
+		if (self.keys[27] == true) {
+			clearInterval(mainLoop);
 		}
-		if (this.keys[40]) {
-			this.box.top += 5
+		if (self.keys[38] == true) {
+			self.position['top'] -= self.step;
+			this.moveBox();
 		}
+		if (self.keys[40] == true) {
+			self.position['top'] += self.step;
+			this.moveBox();
+		}
+		if (self.keys[37] == true) {
+			self.position['left'] -= self.step;
+			this.moveBox();
+		}
+		if (self.keys[39] == true) {
+			self.position['left'] += self.step;
+			this.moveBox();
+		}
+	};
 
+	this.moveBox = function() {
+		self.box.style.top  = self.position['top']  + 'px';
+		self.box.style.left = self.position['left'] + 'px';
 	};
 
 	this.loop = function() {
