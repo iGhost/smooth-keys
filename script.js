@@ -1,13 +1,13 @@
 (function(){
 	this.tickCooldown = 30;
 	this.keys = [];
-	this.canvas = document.getElementById('canvas');
+//	this.canvas = document.getElementById('canvas');
 	this.box = document.getElementById('box');
 	this.position = {
 		top:  100,
 		left: 100
 	};
-	this.step = 3;
+	this.step = 5;
 	var mainLoop;
 
 	this.keyDownHandler = function(e) {
@@ -22,12 +22,12 @@
 	};
 
 	this.setPosition = function(top, left) {
-//		if (top > 0 && self.position.top + top < self.canvas.style.height && self.position.top + top >= 0) {
+		if (self.position.top + top +50 < window.innerHeight - 2 && self.position.top + top >= 2) {
 			self.position['top'] += top;
-//		}
-//		if (left > 0 && self.position.left + left < self.canvas.style.width && self.position.left + left >= 0) {
+		}
+		if (self.position.left + left +50 < window.innerWidth - 2 && self.position.left + left >= 2) {
 			self.position['left'] += left;
-//		}
+		}
 		this.moveBox();
 	};
 
